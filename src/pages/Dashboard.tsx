@@ -7,7 +7,7 @@ import {
   TrendingUp,
   CalendarClock,
 } from "lucide-react";
-import lupaNeon from "../assets/animacoes/lupa-neon.svg";
+
 import { gsap } from "gsap";
 import { useNavigate } from "react-router";
 import AssistantChat from "../components/AssistantChat";

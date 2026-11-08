@@ -2260,3 +2260,6 @@ box-shadow: var(--shadow-card);
 .course-card__icon:hover svg {
   filter: drop-shadow(0 0 6px #38bdf8);
 }
+.hero .hero__botao-invisivel {
+  font-size: 0;
+}
