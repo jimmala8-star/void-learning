@@ -8,10 +8,10 @@ import {
   CalendarClock,
 } from "lucide-react";
 
-import { gsap } from "gsap";
 import { useNavigate } from "react-router";
 import AssistantChat from "../components/AssistantChat";
 import StatCard from "../components/StatCard";
+import PhotoBanner from "../components/PhotoBanner";
 import { usePageAnimation } from "../hooks/usePageAnimation";
 
 
@@ -21,16 +21,8 @@ function Dashboard() {
 
   const navigate = useNavigate();
 
-  function abrirDisciplinas(
-    event: React.MouseEvent<HTMLButtonElement>
-  ) {
-    gsap.to(event.currentTarget, {
-      scale: 0.94,
-      duration: 0.10,
-      yoyo: true,
-      repeat: 1,
-      onComplete: () => navigate("/cursos"),
-    });
+  function abrirDisciplinas() {
+    navigate("/cursos");
   }
 
   return (
@@ -45,10 +37,10 @@ function Dashboard() {
 <button
   className="hero__botao-invisivel"
   type="button"
+  aria-label="Ver disciplinas"
+  title="Ver disciplinas"
   onClick={abrirDisciplinas}
->
-  Ver disciplinas
-</button>
+/>
       </section>
 
       <section className="stats-grid" aria-label="Resumo acadêmico">
@@ -70,6 +62,15 @@ function Dashboard() {
           label="Média geral"
         />
       </section>
+
+      <PhotoBanner
+        title="Estudar rende mais em grupo"
+        text="Veja o que a sua turma está fazendo nas disciplinas desta semana."
+        image="/images/lounge.jpg"
+        alt="Quatro estudantes conversando e usando notebooks em uma sala de convivência"
+        position="center 40%"
+        height={290}
+      />
 
       <section className="stat-card next-activity" data-animate>
         <div className="stat-card__icon">

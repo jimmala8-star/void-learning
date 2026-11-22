@@ -10,6 +10,8 @@ import {
   Download,
   ExternalLink,
 } from "lucide-react";
+import { coverFor } from "../data/covers";
+import PhotoBanner from "../components/PhotoBanner";
 import { usePageAnimation } from "../hooks/usePageAnimation";
 
 const materials = [
@@ -95,6 +97,14 @@ function Materials() {
         <Library size={34} />
       </div>
 
+      <PhotoBanner
+        title="Leve o estudo para onde for"
+        text="Apostilas, vídeos e links à mão, no notebook ou no gramado."
+        image="/images/lawn.jpg"
+        alt="Quatro estudantes estudando sentados na grama do campus"
+        position="center 62%"
+      />
+
       <div className="materials-summary" data-animate>
         <div className="materials-summary__icon">
           <BookOpen size={25} />
@@ -152,6 +162,9 @@ function Materials() {
                 key={material.id}
                 data-animate
               >
+                <div className="material-card__cover">
+                  <img src={coverFor(material.subject)} alt="" loading="lazy" />
+                </div>
                 <div className="material-card__header">
                   <div className="material-card__icon">
                     <Icon size={23} />

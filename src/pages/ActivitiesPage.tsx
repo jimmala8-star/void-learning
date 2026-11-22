@@ -7,6 +7,8 @@ import {
   AlertCircle,
   CalendarDays,
 } from "lucide-react";
+import { coverFor } from "../data/covers";
+import PhotoBanner from "../components/PhotoBanner";
 import { usePageAnimation } from "../hooks/usePageAnimation";
 
 const activities = [
@@ -77,6 +79,14 @@ function Activities() {
         <ClipboardList size={34} />
       </div>
 
+      <PhotoBanner
+        title="Uma entrega de cada vez"
+        text="Organize os prazos e chegue à próxima aula com tudo em dia."
+        image="/images/lab.jpg"
+        alt="Estudantes trabalhando em computadores no laboratório de informática"
+        position="center 60%"
+      />
+
       <div className="activities-summary">
         <article className="activity-summary-card" data-animate>
           <Clock size={22} />
@@ -123,8 +133,8 @@ function Activities() {
           {filteredActivities.length > 0 ? (
             filteredActivities.map((activity) => (
               <article className="activity-item" key={activity.id}>
-                <div className="activity-item__icon">
-                  <ClipboardList size={21} />
+                <div className="activity-item__icon activity-item__thumb">
+                  <img src={coverFor(activity.subject)} alt="" loading="lazy" />
                 </div>
 
                 <div className="activity-item__info">

@@ -2,6 +2,7 @@
 import { useRef } from "react";
 import { usePageAnimation } from "../hooks/usePageAnimation";
 import { GraduationCap, TrendingUp } from "lucide-react";
+import PhotoBanner from "../components/PhotoBanner";
 
 const grades = [
   { subject: "Programação FrontEnd", grade: 9.2 },
@@ -25,6 +26,14 @@ function Grades() {
         </div>
         <GraduationCap size={34} />
       </div>
+
+      <PhotoBanner
+        title="Seu esforço aparece aqui"
+        text="Veja como a turma e você estão evoluindo a cada avaliação."
+        image="/images/patio.jpg"
+        alt="Estudantes conversando e rindo em uma mesa no pátio do campus"
+        position="center 40%"
+      />
 
       <article className="grades-average">
         <div>

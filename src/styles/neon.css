@@ -1,0 +1,371 @@
+/* =====================================================================
+   VOID LEARNING — INTEGRAÇÃO NEON (carrega por último)
+   O banner animado do início usa ciano elétrico (#13dfff / #3cdfff) sobre
+   azul-marinho. Aqui esse mesmo brilho é espalhado pelo restante do site,
+   principalmente no modo claro, para não ficar "um bloco escuro solto".
+   ===================================================================== */
+:root {
+  --neon: #13dfff;
+  --neon-soft: #3cdfff;
+  --neon-deep: #1f6bff;
+  --neon-ink: #06307a;
+  --neon-glow: 0 0 0 1px rgb(60 223 255 / 55%), 0 10px 34px -8px rgb(19 223 255 / 45%);
+}
+
+/* ---------- Fundo: halos de luz que ecoam o banner ---------- */
+html:not([data-theme="dark"]) body,
+html:not([data-theme="dark"]) .app-layout {
+  background:
+    radial-gradient(900px 460px at 85% -120px, rgb(19 223 255 / 20%), transparent 70%),
+    radial-gradient(760px 520px at -8% 28%, rgb(31 107 255 / 11%), transparent 70%),
+    radial-gradient(700px 420px at 60% 110%, rgb(19 223 255 / 12%), transparent 70%),
+    var(--color-background);
+  background-attachment: fixed;
+}
+html[data-theme="dark"] body,
+html[data-theme="dark"] .app-layout {
+  background:
+    radial-gradient(900px 460px at 85% -120px, rgb(19 223 255 / 10%), transparent 70%),
+    radial-gradient(760px 520px at -8% 30%, rgb(31 107 255 / 12%), transparent 70%),
+    var(--color-background);
+  background-attachment: fixed;
+}
+
+/* ---------- Banner animado do início: moldura e halo neon ---------- */
+.hero:has(.hero__banner) {
+  border-radius: 20px;
+  box-shadow: var(--neon-glow), 0 0 60px -10px rgb(31 107 255 / 35%);
+  animation: vl-halo 5s ease-in-out infinite;
+}
+@keyframes vl-halo {
+  0%, 100% { box-shadow: 0 0 0 1px rgb(60 223 255 / 45%), 0 10px 30px -8px rgb(19 223 255 / 35%), 0 0 50px -12px rgb(31 107 255 / 30%); }
+  50%      { box-shadow: 0 0 0 1px rgb(120 238 255 / 85%), 0 14px 46px -6px rgb(19 223 255 / 62%), 0 0 70px -8px rgb(31 107 255 / 45%); }
+}
+/* Linha de luz que sai do banner e conduz o olhar para o conteúdo */
+.hero:has(.hero__banner)::after {
+  content: "";
+  position: absolute;
+  left: 8%; right: 8%; bottom: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #7ceeff 30%, #e6ffff 50%, #7ceeff 70%, transparent);
+  filter: drop-shadow(0 0 6px #13dfff);
+  pointer-events: none;
+}
+
+/* ---------- Cartões: borda de luz e brilho ao passar o mouse ---------- */
+html:not([data-theme="dark"]) :is(.sidebar, .header, .stat-card, .courses-summary, .grades-average, .grade-card, .course-card, .material-card, .activity-item, .activity-card, .schedule-card, .calendar-container, .finance-card, .profile-card, .assistant-chat__window, .notification-panel__dropdown) {
+  border-color: rgb(60 190 255 / 30%);
+  box-shadow: 0 1px 0 rgb(255 255 255 / 80%) inset, 0 8px 26px -10px rgb(31 107 255 / 22%);
+}
+html:not([data-theme="dark"]) :is(.stat-card, .course-card, .material-card, .activity-item, .activity-card, .grade-card, .schedule-card):hover {
+  border-color: rgb(19 223 255 / 70%);
+  box-shadow: 0 0 0 1px rgb(19 223 255 / 45%), 0 14px 36px -10px rgb(19 223 255 / 50%);
+}
+html[data-theme="dark"] :is(.stat-card, .course-card, .material-card, .activity-item, .activity-card, .grade-card, .schedule-card):hover {
+  border-color: rgb(19 223 255 / 60%);
+  box-shadow: 0 0 0 1px rgb(19 223 255 / 35%), 0 12px 34px -10px rgb(19 223 255 / 40%);
+}
+:is(.stat-card, .course-card, .material-card, .activity-item, .activity-card, .grade-card, .schedule-card) {
+  transition: border-color .25s ease, box-shadow .3s ease, transform .25s ease;
+}
+
+/* ---------- Menu lateral ---------- */
+html:not([data-theme="dark"]) .sidebar { background: linear-gradient(180deg, #ffffff 0%, #f1fbff 100%); }
+.sidebar__link { position: relative; }
+.sidebar__link.active::before {
+  content: "";
+  position: absolute;
+  left: -18px; top: 20%; bottom: 20%;
+  width: 4px;
+  border-radius: 0 4px 4px 0;
+  background: linear-gradient(180deg, #7ceeff, #13dfff 55%, #1f6bff);
+  box-shadow: 0 0 12px #13dfff, 0 0 22px rgb(19 223 255 / 60%);
+}
+html:not([data-theme="dark"]) .sidebar__link.active {
+  background: linear-gradient(90deg, rgb(19 223 255 / 18%), rgb(19 223 255 / 4%));
+  color: var(--neon-ink);
+}
+html:not([data-theme="dark"]) .sidebar__link:hover { background: rgb(19 223 255 / 10%); }
+.sidebar__link.active svg { filter: drop-shadow(0 0 5px rgb(19 223 255 / 80%)); }
+.brand-tile { box-shadow: 0 0 0 1px rgb(60 223 255 / 70%), 0 0 18px rgb(19 223 255 / 45%); }
+
+/* ---------- Títulos e ícones ---------- */
+html:not([data-theme="dark"]) .page-section h1,
+html:not([data-theme="dark"]) .dashboard-page h1 {
+  background: linear-gradient(90deg, var(--neon-ink), #1f6bff 70%, #0fb7e0);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+}
+.page-section :is(.courses-heading, .grades-heading) > svg {
+  color: var(--neon-deep);
+  filter: drop-shadow(0 0 8px rgb(19 223 255 / 65%));
+}
+html[data-theme="dark"] .page-section :is(.courses-heading, .grades-heading) > svg { color: var(--neon); }
+html:not([data-theme="dark"]) :is(.stat-card__icon, .courses-summary__icon, .course-card__icon, .material-card__icon) {
+  background: linear-gradient(135deg, rgb(19 223 255 / 22%), rgb(31 107 255 / 14%));
+  color: var(--neon-ink);
+  box-shadow: 0 0 0 1px rgb(19 223 255 / 40%), 0 0 14px rgb(19 223 255 / 28%);
+}
+
+/* ---------- Barras de progresso ---------- */
+.progress-bar__fill {
+  background: linear-gradient(90deg, #13dfff, #1f6bff);
+  box-shadow: 0 0 10px rgb(19 223 255 / 70%);
+}
+html:not([data-theme="dark"]) .progress-bar__track { background: rgb(31 107 255 / 10%); }
+
+/* ---------- Botões ---------- */
+html:not([data-theme="dark"]) :is(.material-card__button, .page-section form button, .login-submit) {
+  background: linear-gradient(135deg, #1f6bff, #13b8f0);
+  border-color: transparent; color: #fff;
+  box-shadow: 0 0 0 1px rgb(19 223 255 / 55%), 0 8px 22px -6px rgb(19 223 255 / 65%);
+}
+html:not([data-theme="dark"]) :is(.material-card__button, .page-section form button, .login-submit):hover {
+  box-shadow: 0 0 0 1px rgb(124 238 255 / 90%), 0 10px 30px -4px rgb(19 223 255 / 85%);
+}
+
+/* ---------- Busca e campos ---------- */
+html:not([data-theme="dark"]) .header__search:focus-within,
+html:not([data-theme="dark"]) .courses-search input:focus {
+  border-color: rgb(19 223 255 / 85%);
+  box-shadow: 0 0 0 3px rgb(19 223 255 / 22%), 0 0 18px rgb(19 223 255 / 30%);
+  outline: none;
+}
+
+/* ---------- Banners com foto: mesmo véu azul-marinho + brilho do hero ---------- */
+.photo-banner {
+  background: #061a50;
+  box-shadow: 0 0 0 1px rgb(60 223 255 / 45%), 0 14px 40px -12px rgb(19 223 255 / 45%);
+}
+.photo-banner img { transition: transform .9s cubic-bezier(.2,.8,.2,1); }
+.photo-banner:hover img { transform: scale(1.04); }
+.photo-banner::after {
+  content: "";
+  position: absolute; left: 6%; right: 6%; bottom: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, #7ceeff 30%, #e6ffff 50%, #7ceeff 70%, transparent);
+  filter: drop-shadow(0 0 6px #13dfff);
+  pointer-events: none;
+}
+.photo-banner__text {
+  background:
+    radial-gradient(500px 220px at 0% 100%, rgb(19 223 255 / 22%), transparent 70%),
+    linear-gradient(90deg, rgb(4 20 70 / 88%), rgb(6 40 110 / 52%) 62%, transparent);
+}
+.photo-banner__text h2 { text-shadow: 0 0 18px rgb(19 223 255 / 55%); }
+.photo-banner__text p { color: #dff8ff; }
+
+/* ---------- Telas pequenas e movimento reduzido ---------- */
+@media (max-width: 900px) { .sidebar__link.active::before { left: -10px; } }
+@media (prefers-reduced-motion: reduce) {
+  .hero:has(.hero__banner) { animation: none; }
+  .photo-banner img, :is(.stat-card, .course-card, .material-card, .activity-item, .activity-card, .grade-card, .schedule-card) { transition: none; }
+}
+
+/* ---------- Botão "Ver disciplinas": hover sutil (borda neon + relevo) ---------- */
+.hero .hero__botao-invisivel {
+  border: 1.5px solid transparent !important;
+  border-radius: 14px;
+  transition: border-color .25s ease, box-shadow .3s ease, transform .3s cubic-bezier(.2,.8,.2,1), background .25s ease !important;
+}
+.hero .hero__botao-invisivel:hover,
+.hero .hero__botao-invisivel:focus-visible {
+  background: rgb(19 223 255 / 5%) !important;
+  border-color: rgb(124 238 255 / 90%) !important;
+  box-shadow:
+    0 0 0 1px rgb(19 223 255 / 35%),
+    0 0 14px rgb(19 223 255 / 55%),
+    inset 0 0 12px rgb(19 223 255 / 22%),
+    0 12px 22px -8px rgb(0 8 40 / 70%) !important;
+  transform: translateY(-3px) !important;
+}
+.hero .hero__botao-invisivel:focus-visible { outline: 2px solid #e6ffff !important; outline-offset: 4px; }
+.hero .hero__botao-invisivel:active {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 0 0 1px rgb(19 223 255 / 45%), 0 0 10px rgb(19 223 255 / 45%), 0 4px 10px -4px rgb(0 8 40 / 60%) !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero .hero__botao-invisivel:hover, .hero .hero__botao-invisivel:focus-visible { transform: none !important; }
+}
+
+
+/* ===== VOID LEARNING — MENU SUPERIOR HORIZONTAL / NEON ===== */
+html[data-theme="light"] {
+  --color-background: #eaf5ff;
+  --color-border: #c9e5f8;
+}
+.app-layout { display: flex; flex-direction: column; min-height: 100vh; }
+.void-topbar {
+  display: flex; flex-direction: column; gap: 10px; padding: 14px 24px 0;
+  background: linear-gradient(120deg, #e4f5ff 0%, #f6fbff 55%, #d5efff 100%);
+  border-bottom: 1px solid #c7e6fb;
+}
+html[data-theme="dark"] .void-topbar {
+  background: linear-gradient(120deg, #09162b, #102947 55%, #081c36);
+  border-color: #23476a;
+}
+.void-topbar .sidebar {
+  display: flex; flex-direction: row; align-items: center; width: 100%; min-height: 0;
+  gap: 20px; padding: 5px 0; border: 0; background: transparent;
+}
+.void-topbar .sidebar__logo { margin: 0; flex: 0 0 auto; gap: 9px; }
+.void-topbar .brand-tile { width: 48px; height: 48px; }
+.void-topbar .sidebar__brand-text strong { font-size: 17px; }
+.void-topbar .sidebar__brand-text span { font-size: 10px; }
+.void-topbar .sidebar__nav {
+  display: flex; flex-direction: row; align-items: center; flex: 1 1 auto;
+  justify-content: space-between; gap: 3px; min-width: 0;
+  overflow-x: auto; overflow-y: hidden; scrollbar-width: thin;
+}
+.void-topbar .sidebar__link {
+  position: relative; display: flex; flex-direction: column; justify-content: center;
+  align-items: center; gap: 3px; flex: 0 0 auto; min-width: 67px;
+  padding: 7px 8px; border-radius: 11px; color: #285274;
+  transition: color .2s, background .2s, box-shadow .2s, transform .2s;
+}
+.void-topbar .sidebar__link span { font-size: 11px; white-space: nowrap; }
+.void-topbar .sidebar__link svg { transition: filter .2s, transform .2s; }
+.void-topbar .sidebar__link::before { display: none !important; }
+.void-topbar .sidebar__link:hover, .void-topbar .sidebar__link:focus-visible {
+  background: rgb(20 183 242 / 14%); color: #0064ad;
+  box-shadow: 0 0 0 1px rgb(22 200 255 / 35%), 0 0 17px rgb(0 193 255 / 30%), inset 0 0 12px rgb(0 193 255 / 12%);
+  transform: translateY(-2px); outline: none;
+}
+.void-topbar .sidebar__link:hover svg, .void-topbar .sidebar__link:focus-visible svg {
+  filter: drop-shadow(0 0 5px #00cfff) drop-shadow(0 0 8px #00cfff);
+  transform: scale(1.12);
+}
+.void-topbar .sidebar__link.active {
+  background: rgb(29 184 246 / 15%); color: #005b9d; font-weight: 750;
+  box-shadow: inset 0 -2px 0 #09bfff;
+}
+.void-topbar .header { padding: 10px 14px; border-radius: 13px 13px 0 0; }
+.app-content { flex: 1 1 auto; width: 100%; padding: 24px; }
+html[data-theme="dark"] .void-topbar .sidebar__link { color: #c1d9ef; }
+html[data-theme="dark"] .void-topbar .sidebar__link:hover,
+html[data-theme="dark"] .void-topbar .sidebar__link:focus-visible {
+  background: rgb(0 212 255 / 13%); color: #78edff;
+  box-shadow: 0 0 0 1px rgb(50 224 255 / 42%), 0 0 20px rgb(0 210 255 / 28%);
+}
+html[data-theme="dark"] .void-topbar .sidebar__link.active {
+  color: #6de8ff; background: rgb(0 185 255 / 12%);
+}
+@media (max-width: 980px) {
+  .void-topbar { padding: 12px 14px 0; }
+  .void-topbar .sidebar { flex-wrap: wrap; gap: 8px; }
+  .void-topbar .sidebar__nav { width: 100%; flex-basis: 100%; justify-content: flex-start; }
+  .app-content { padding: 16px; }
+}
+@media (max-width: 600px) {
+  .void-topbar .sidebar__link { min-width: 65px; }
+  .void-topbar .sidebar__link span { font-size: 10px; }
+  .void-topbar .header { gap: 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .void-topbar .sidebar__link, .void-topbar .sidebar__link svg { transition: none; }
+}
+
+/* ===== AJUSTE FINAL: FUNDO AZUL-GELO + BANNER COMPACTO ===== */
+/* O fundo envolve toda a interface no modo claro, sem afetar o modo escuro. */
+html:not([data-theme="dark"]) {
+  --color-background: #dcefff;
+  --color-border: #b6dcf5;
+}
+html:not([data-theme="dark"]) body,
+html:not([data-theme="dark"]) .app-layout,
+html:not([data-theme="dark"]) .app-content {
+  background-color: #dcefff;
+  background-image:
+    radial-gradient(ellipse 75% 50% at 55% 3%, rgba(53,203,232,.27), transparent 75%),
+    linear-gradient(135deg, #d0eaff 0%, #eaf7ff 48%, #d5eeff 100%);
+}
+html:not([data-theme="dark"]) .void-topbar {
+  background: linear-gradient(105deg, #c9e7fc 0%, #e7f6ff 52%, #cdeaff 100%);
+  border-bottom: 1px solid #a9d6f3;
+}
+/* A imagem original é redimensionada proporcionalmente, sem recortes. */
+.dashboard-page .hero:has(.hero__banner) {
+  width: 100%;
+  max-width: 1040px;
+  margin: 0 auto 28px;
+  border-radius: 20px;
+}
+.dashboard-page .hero .hero__banner {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: inherit;
+}
+@media (min-width: 1200px) {
+  .dashboard-page .hero:has(.hero__banner) { max-width: min(1040px, 86%); }
+}
+@media (max-width: 640px) {
+  .dashboard-page .hero:has(.hero__banner) { margin-bottom: 20px; border-radius: 14px; }
+}
+
+/* ===== ACABAMENTO FINAL: AZUL MAIS PRESENTE + NEON NOS CONTROLES ===== */
+html:not([data-theme="dark"]) {
+  --color-background: #c8e5fb;
+  --color-border: #9ccff0;
+}
+html:not([data-theme="dark"]) body,
+html:not([data-theme="dark"]) .app-layout,
+html:not([data-theme="dark"]) .app-content {
+  background-color: #c8e5fb;
+  background-image:
+    radial-gradient(ellipse 75% 55% at 52% 3%, rgba(24, 165, 224, .30), transparent 78%),
+    linear-gradient(135deg, #b8dcf8 0%, #d9efff 48%, #bedff9 100%);
+}
+html:not([data-theme="dark"]) .void-topbar {
+  background: linear-gradient(105deg, #b3dcf8 0%, #d8f0ff 52%, #b7def9 100%);
+  border-bottom-color: #8dc8ed;
+}
+
+/* Os controles do cabeçalho recebem o mesmo hover neon do menu principal. */
+.void-topbar .notification-panel__toggle,
+.void-topbar .header__theme-button,
+.void-topbar .header__avatar {
+  transition: color .22s ease, background-color .22s ease, border-color .22s ease,
+    box-shadow .22s ease, transform .22s ease, filter .22s ease;
+}
+.void-topbar .notification-panel__toggle:hover,
+.void-topbar .notification-panel__toggle:focus-visible,
+.void-topbar .header__theme-button:hover,
+.void-topbar .header__theme-button:focus-visible,
+.void-topbar .header__profile:hover .header__avatar {
+  color: #0064ad;
+  background: rgb(20 183 242 / 14%);
+  border-color: rgb(22 200 255 / 45%);
+  box-shadow: 0 0 0 1px rgb(22 200 255 / 35%), 0 0 17px rgb(0 193 255 / 30%), inset 0 0 12px rgb(0 193 255 / 12%);
+  transform: translateY(-2px);
+}
+.void-topbar .notification-panel__toggle:hover svg,
+.void-topbar .notification-panel__toggle:focus-visible svg,
+.void-topbar .header__theme-button:hover svg,
+.void-topbar .header__theme-button:focus-visible svg,
+.void-topbar .header__profile:hover .header__avatar svg {
+  filter: drop-shadow(0 0 5px #00cfff) drop-shadow(0 0 8px #00cfff);
+  transform: scale(1.12);
+}
+.void-topbar .notification-panel__toggle svg,
+.void-topbar .header__theme-button svg,
+.void-topbar .header__avatar svg {
+  transition: filter .22s ease, transform .22s ease;
+}
+html[data-theme="dark"] .void-topbar .notification-panel__toggle:hover,
+html[data-theme="dark"] .void-topbar .notification-panel__toggle:focus-visible,
+html[data-theme="dark"] .void-topbar .header__theme-button:hover,
+html[data-theme="dark"] .void-topbar .header__theme-button:focus-visible,
+html[data-theme="dark"] .void-topbar .header__profile:hover .header__avatar {
+  background: rgb(0 212 255 / 13%);
+  color: #78edff;
+  border-color: rgb(50 224 255 / 42%);
+  box-shadow: 0 0 0 1px rgb(50 224 255 / 42%), 0 0 20px rgb(0 210 255 / 28%);
+}
+@media (prefers-reduced-motion: reduce) {
+  .void-topbar .notification-panel__toggle,
+  .void-topbar .header__theme-button,
+  .void-topbar .header__avatar,
+  .void-topbar .notification-panel__toggle svg,
+  .void-topbar .header__theme-button svg,
+  .void-topbar .header__avatar svg { transition: none; }
+}

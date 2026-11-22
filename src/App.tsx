@@ -11,13 +11,15 @@ import Profile from "./pages/Profile";
 import Schedule from "./pages/Schedule";
 import Finance from "./pages/FinancePage";
 import Activities from "./pages/ActivitiesPage";
+import Login from "./pages/Login";
 import Materials from "./pages/Materials";
 
 function App() {
   return (
     <Routes>
+      <Route path="/login" element={<Login />} />
       <Route path="/" element={<Layout />}>
-        <Route index element={<Navigate to="/dashboard" replace />} />
+        <Route index element={<Navigate to="/login" replace />} />
 
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="cursos" element={<Courses />} />

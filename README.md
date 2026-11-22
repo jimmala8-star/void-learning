@@ -1,32 +1,26 @@
-# React + TypeScript + Vite
+# Void Learning
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Portal acadêmico demonstrativo desenvolvido com React, TypeScript e Vite.
 
-Currently, two official plugins are available:
+## Executar localmente
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+1. Instale Node.js (versão compatível com as dependências do projeto).
+2. Abra o terminal nesta pasta, onde está o `package.json`.
+3. Execute `npm install`.
+4. Execute `npm run dev` e abra o endereço exibido pelo Vite.
 
-## React Compiler
+A rota inicial abre a tela de login (`/login`). Preencha usuário/e-mail e senha com qualquer valor para entrar no painel demonstrativo.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+> A autenticação é ilustrativa e funciona apenas no front-end. Para autenticação real, conecte um backend ou provedor de identidade.
 
-## Expanding the Oxlint configuration
+## Recursos desta versão
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+- Tela de login moderna com imagem de campus, formulário central e detalhes verdes.
+- Alternância de visibilidade da senha e validação de campos obrigatórios.
+- Dashboard com banner SVG animado preservado e botão “Ver Disciplinas” com hover, foco por teclado e navegação.
+- Ajustes de largura para melhor aproveitamento de telas desktop.
+- Melhor contraste dos rótulos de itens pendentes no tema escuro.
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
+## Produção
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+Execute `npm run build` para gerar a pasta `dist`.

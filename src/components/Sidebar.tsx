@@ -19,17 +19,13 @@ function Sidebar() {
   return (
     <aside className="sidebar">
       <div className="sidebar__logo">
-        <img
-  src={logoVoid}
-  alt="Logo Void Learning"
-  width={48}
-/>
-        <div style={{ display: "flex", flexDirection: "column" }}>
-  <strong>Void Learning</strong>
-  <span style={{ fontSize: "10px", fontWeight: 400, whiteSpace: "nowrap" }}>
-    Do zero ao conhecimento.
-  </span>
-</div>
+        <span className="brand-tile">
+          <img src={logoVoid} alt="Logo Void Learning" />
+        </span>
+        <div className="sidebar__brand-text">
+          <strong>Void Learning</strong>
+          <span>Do zero ao conhecimento.</span>
+        </div>
       </div>
 
       <nav className="sidebar__nav" aria-label="Navegação principal">

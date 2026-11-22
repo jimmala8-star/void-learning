@@ -12,12 +12,12 @@ export function usePageAnimation(
 
     gsap.fromTo(
       elements,
-      { opacity: 0, x: -60 },
+      { opacity: 0, y: 12 },
   {
     opacity: 1,
-    x: 0,
-    duration: 0.7,
-    stagger: 0.1,
+    y: 0,
+    duration: 0.4,
+    stagger: 0.05,
     clearProps: "all",
   }
 );

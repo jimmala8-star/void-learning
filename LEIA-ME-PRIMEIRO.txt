@@ -1,0 +1,19 @@
+VOID LEARNING — VERSÃO MESCLADA (neon + fotos)
+
+1. Extraia o ZIP, abra a pasta com package.json e rode no terminal:
+   npm install
+   npm run dev
+2. Abra o endereço do Vite (geralmente http://localhost:5173). A tela inicial é /login.
+
+O que tem nesta versão
+- Base: projeto "refeito" (design neon, banner SVG animado, animações dos ícones, login com foto).
+- Fotos de pessoas, uma por página, sem repetir:
+  Início = lounge.jpg | Disciplinas = library.jpg | Atividades = lab.jpg
+  Materiais = lawn.jpg | Notas = patio.jpg
+  O login continua com a foto estudantes-void.jpg.
+- src/styles/neon.css: espalha o neon do banner (ciano #13dfff) pelo site, principalmente no modo claro.
+
+Atualizações
+- Calendário: agora é o do "redesign" (grade mensal, filtros Aulas/Provas, painel do dia e lista de próximas
+  avaliações), reescrito no estilo neon. Código em src/pages/Calendar.tsx e src/styles/calendar.css.
+- Botão "Ver disciplinas": o hover verde/amarelado foi trocado por borda neon ciano + leve relevo (neon.css).

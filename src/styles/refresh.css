@@ -1,0 +1,131 @@
+/* ===== REFINAMENTO VISUAL (carrega depois do global.css) ===== */
+:root {
+  --font-display: "Bricolage Grotesque", "Instrument Sans", system-ui, sans-serif;
+  --font-body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --shadow-card: 0 1px 2px rgb(18 52 90 / 6%), 0 8px 22px rgb(18 52 90 / 7%);
+  font-family: var(--font-body);
+}
+h1, h2, h3, .sidebar__logo strong, .login-brand, .stat-card > strong { font-family: var(--font-display); }
+h1, h2 { letter-spacing: -0.02em; }
+
+/* ---- Logo: sempre sobre um fundo claro, legível nos dois temas ---- */
+.brand-tile {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 58px;
+  height: 58px;
+  padding: 3px;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 0 0 1px rgb(53 203 232 / 55%), 0 6px 18px rgb(8 126 174 / 28%);
+}
+.brand-tile img { width: 100%; height: 100%; object-fit: contain; margin: 0; filter: none; }
+.sidebar__logo { gap: 12px; padding: 0 2px; }
+.sidebar__logo img { margin-right: 0; }
+html[data-theme="dark"] .sidebar__logo img { filter: none; }
+.sidebar__brand-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.sidebar__brand-text strong { font-size: 19px; line-height: 1.1; }
+.sidebar__brand-text span { font-size: 12px; font-weight: 500; color: var(--color-muted); white-space: nowrap; }
+.login-brand { gap: 12px; font-size: 21px; letter-spacing: 0; text-shadow: 0 2px 14px rgb(0 0 0 / 55%); }
+.login-brand .brand-tile { width: 56px; height: 56px; }
+.login-brand img { width: 100%; height: 100%; }
+@media (max-width: 640px) { .login-brand .brand-tile { width: 46px; height: 46px; } }
+.login-card { padding-top: 38px; }
+.login-card h1 { font-family: var(--font-display); }
+
+/* ---- Imagens das categorias ---- */
+.course-card { padding: 22px; gap: 14px; overflow: hidden; border-radius: 22px; }
+.course-card__cover, .material-card__cover {
+  overflow: hidden;
+  background: #0f52ba;
+}
+.course-card__cover { margin: -22px -22px 2px; height: 140px; }
+.material-card { overflow: hidden; border-radius: 14px; }
+.material-card__cover { align-self: stretch; margin: -20px -20px 18px; height: 120px; }
+.course-card__cover img, .material-card__cover img {
+  display: block; width: 100%; height: 100%; object-fit: cover;
+  transition: transform .5s cubic-bezier(.2,.8,.2,1);
+}
+.course-card:hover .course-card__cover img,
+.material-card:hover .material-card__cover img { transform: scale(1.07); }
+.activity-item__thumb { width: 64px; height: 48px; padding: 0; overflow: hidden; border-radius: 10px; }
+.activity-item__thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
+.activity-item:hover .activity-item__thumb img { transform: scale(1.15); }
+
+/* ---- Ícones interativos animados ---- */
+@keyframes vl-bounce { 0%,100% { transform: translateY(0) } 35% { transform: translateY(-5px) } 65% { transform: translateY(1px) } }
+@keyframes vl-wiggle { 0%,100% { transform: rotate(0) } 25% { transform: rotate(-14deg) } 75% { transform: rotate(14deg) } }
+@keyframes vl-spin   { to { transform: rotate(360deg) } }
+@keyframes vl-pop    { 0%,100% { transform: scale(1) } 45% { transform: scale(1.28) } }
+@keyframes vl-shake  { 0%,100% { transform: translateX(0) } 20% { transform: translateX(-3px) } 60% { transform: translateX(3px) } }
+@keyframes vl-flip   { 0%,100% { transform: perspective(60px) rotateY(0) } 50% { transform: perspective(60px) rotateY(180deg) } }
+@keyframes vl-toss   { 0%,100% { transform: translateY(0) rotate(0) } 40% { transform: translateY(-5px) rotate(-12deg) } }
+@keyframes vl-nod    { 0%,100% { transform: translateY(0) } 50% { transform: translateY(3px) } }
+@keyframes vl-ring   { 0%,100% { transform: rotate(0) } 15% { transform: rotate(18deg) } 35% { transform: rotate(-16deg) } 55% { transform: rotate(10deg) } 75% { transform: rotate(-6deg) } }
+
+.sidebar__link svg { transform-origin: center; transition: color .2s; }
+.sidebar__link:hover svg, .sidebar__link.active svg { animation-duration: .6s; animation-timing-function: ease-in-out; }
+.sidebar__link:nth-child(1):hover svg, .sidebar__link:nth-child(1).active svg { animation-name: vl-bounce; }
+.sidebar__link:nth-child(2):hover svg, .sidebar__link:nth-child(2).active svg { animation-name: vl-flip; }
+.sidebar__link:nth-child(3):hover svg, .sidebar__link:nth-child(3).active svg { animation-name: vl-wiggle; }
+.sidebar__link:nth-child(4):hover svg, .sidebar__link:nth-child(4).active svg { animation-name: vl-wiggle; }
+.sidebar__link:nth-child(5):hover svg, .sidebar__link:nth-child(5).active svg { animation-name: vl-toss; }
+.sidebar__link:nth-child(6):hover svg, .sidebar__link:nth-child(6).active svg { animation-name: vl-pop; }
+.sidebar__link:nth-child(7):hover svg, .sidebar__link:nth-child(7).active svg { animation-name: vl-spin; animation-duration: .9s; }
+.sidebar__link:nth-child(8):hover svg, .sidebar__link:nth-child(8).active svg { animation-name: vl-shake; }
+.sidebar__link:nth-child(9):hover svg, .sidebar__link:nth-child(9).active svg { animation-name: vl-nod; }
+
+.stat-card { transition: transform .25s ease, box-shadow .25s ease; border-radius: 18px; }
+.stat-card:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgb(18 52 90 / 14%); }
+.stat-card__icon { transition: background .25s, color .25s, transform .25s; }
+.stat-card:hover .stat-card__icon { background: var(--color-primary); color: #fff; transform: rotate(-6deg) scale(1.06); }
+.stats-grid .stat-card:nth-child(1):hover svg { animation: vl-flip .7s ease-in-out; }
+.stats-grid .stat-card:nth-child(2):hover svg { animation: vl-pop .6s ease-in-out; }
+.stats-grid .stat-card:nth-child(3):hover svg { animation: vl-bounce .6s ease-in-out; }
+.next-activity:hover .stat-card__icon svg { animation: vl-ring .8s ease-in-out; }
+
+.course-card:hover .course-card__icon svg,
+.material-card:hover .material-card__icon svg { animation: vl-wiggle .6s ease-in-out; }
+.material-card__button svg { transition: transform .25s ease; }
+.material-card__button:hover svg { transform: translate(3px, -3px); }
+.material-card__button:active { transform: scale(.97); }
+
+.header__actions > button svg, .header__theme-button svg { transition: transform .4s ease; }
+.header__theme-button:hover svg { transform: rotate(60deg) scale(1.1); }
+.header__theme-button:active svg { transform: rotate(180deg); }
+.header__actions > button:not(.header__theme-button):hover svg { animation: vl-ring .8s ease-in-out; transform-origin: top center; }
+.login-submit svg { transition: transform .25s ease; }
+.login-submit:hover svg { transform: translateX(4px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .sidebar__link svg, .stat-card svg, .course-card svg, .material-card svg, .header__actions svg { animation: none !important; }
+  .course-card__cover img, .material-card__cover img, .activity-item__thumb img { transition: none; }
+}
+
+/* ---- Cena com estudantes, campo e céu ---- */
+.login-screen { background-image: url('/images/estudantes-campo.svg'); background-position: center bottom; }
+.login-screen::before { background: linear-gradient(115deg, rgb(3 13 29 / 38%), rgb(3 13 29 / 6%) 50%, rgb(3 13 29 / 30%)); backdrop-filter: none; }
+.login-screen__shade { background: radial-gradient(ellipse at center, rgb(3 13 29 / 25%) 0%, transparent 65%); }
+.login-bottom-note { text-shadow: 0 1px 8px rgb(0 0 0 / 70%); }
+.campus-banner { position: relative; overflow: hidden; margin: 20px 0; border-radius: 22px; height: 240px; box-shadow: var(--shadow-card); }
+.campus-banner img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 78%; transition: transform .8s cubic-bezier(.2,.8,.2,1); }
+.campus-banner:hover img { transform: scale(1.04); }
+.campus-banner__text { position: absolute; left: 0; right: 0; top: 0; padding: 22px 28px; color: #fff; background: linear-gradient(180deg, rgb(8 43 102 / 72%), transparent); }
+.campus-banner__text h2 { margin: 0 0 4px; font-size: 24px; }
+.campus-banner__text p { margin: 0; max-width: 460px; font-size: 14px; color: #e6f3ff; }
+@media (prefers-reduced-motion: reduce) { .campus-banner img { transition: none; } }
+
+/* ---- Foto de estudantes (login e banners das páginas) ---- */
+.login-screen { background-image: url('/images/estudantes-void.jpg'); background-position: 20% center; }
+.login-screen::before { background: linear-gradient(180deg, rgb(3 13 29 / 55%), transparent 30%), linear-gradient(90deg, rgb(3 13 29 / 5%), rgb(3 13 29 / 35%)); }
+@media (min-width: 900px) {
+  .login-screen { place-items: center end; padding-right: clamp(32px, 8vw, 150px); }
+}
+@media (max-width: 899px) { .login-screen::before { background: linear-gradient(180deg, rgb(3 13 29 / 55%), rgb(3 13 29 / 45%)); } }
+.photo-banner { position: relative; overflow: hidden; margin: 0 0 22px; border-radius: 22px; box-shadow: var(--shadow-card); background: #1d4f8f; }
+.photo-banner img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.photo-banner__text { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; max-width: 560px; padding: 0 32px; color: #fff; background: linear-gradient(90deg, rgb(8 43 102 / 82%), rgb(8 43 102 / 45%) 70%, transparent); }
+.photo-banner__text h2 { margin: 0 0 6px; font-size: clamp(21px, 2.4vw, 28px); }
+.photo-banner__text p { margin: 0; font-size: 14px; line-height: 1.5; color: #e6f3ff; }
+@media (max-width: 640px) { .photo-banner__text { max-width: none; padding: 0 20px; } }

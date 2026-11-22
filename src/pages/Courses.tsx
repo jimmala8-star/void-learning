@@ -1,6 +1,8 @@
 
 import { useRef, useState } from "react";
+import PhotoBanner from "../components/PhotoBanner";
 import { usePageAnimation } from "../hooks/usePageAnimation";
+import { coverFor } from "../data/covers";
 import ProgressBar from "../components/ProgressBar";
 import {
   BookOpen,
@@ -48,6 +50,14 @@ function Courses() {
         <GraduationCap size={34} />
       </div>
 
+      <PhotoBanner
+        title="Cada disciplina no seu ritmo"
+        text="Acompanhe o andamento do semestre e estude junto com a turma."
+        image="/images/library.jpg"
+        alt="Estudantes estudando juntos em uma mesa da biblioteca"
+        position="center 45%"
+      />
+
       <div className="courses-summary">
         <div className="courses-summary__icon">
           <BookOpen size={25} />
@@ -80,6 +90,9 @@ function Courses() {
               key={course.name}
               data-animate
             >
+              <div className="course-card__cover">
+                <img src={coverFor(course.name)} alt="" loading="lazy" />
+              </div>
               <div className="course-card__header">
                <div className="course-card__icon">
   {course.name === "Programação FrontEnd" ? (
